@@ -1,33 +1,24 @@
-import 'models/iphone_11_pro_max_three_tab_container_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
-import 'package:syncserve/presentation/iphone_11_pro_max_three_page/iphone_11_pro_max_three_page.dart';
 import 'package:syncserve/widgets/app_bar/appbar_leading_image.dart';
 import 'package:syncserve/widgets/app_bar/appbar_trailing_image.dart';
 import 'package:syncserve/widgets/app_bar/custom_app_bar.dart';
 import 'package:syncserve/widgets/custom_search_view.dart';
-import 'provider/iphone_11_pro_max_three_tab_container_provider.dart';
 
-class Iphone11ProMaxThreeTabContainerScreen extends StatefulWidget {
-  const Iphone11ProMaxThreeTabContainerScreen({Key? key})
+class DealsScreen extends StatefulWidget {
+  const DealsScreen({Key? key})
       : super(
           key: key,
         );
 
   @override
-  Iphone11ProMaxThreeTabContainerScreenState createState() =>
-      Iphone11ProMaxThreeTabContainerScreenState();
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Iphone11ProMaxThreeTabContainerProvider(),
-      child: Iphone11ProMaxThreeTabContainerScreen(),
-    );
-  }
+  DealsScreenState createState() => DealsScreenState();
 }
 
-class Iphone11ProMaxThreeTabContainerScreenState
-    extends State<Iphone11ProMaxThreeTabContainerScreen>
+class DealsScreenState extends State<DealsScreen>
     with TickerProviderStateMixin {
+  TextEditingController searchController = TextEditingController();
+
   late TabController tabviewController;
 
   @override
@@ -53,7 +44,7 @@ class Iphone11ProMaxThreeTabContainerScreenState
                 width: 264.h,
                 margin: EdgeInsets.only(left: 50.h),
                 child: Text(
-                  "msg_affordable_dining".tr,
+                  "Affordable Dining Made Easy",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.displaySmall,
@@ -64,20 +55,10 @@ class Iphone11ProMaxThreeTabContainerScreenState
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50.h),
-                  child: Selector<Iphone11ProMaxThreeTabContainerProvider,
-                      TextEditingController?>(
-                    selector: (
-                      context,
-                      provider,
-                    ) =>
-                        provider.searchController,
-                    builder: (context, searchController, child) {
-                      return CustomSearchView(
-                        controller: searchController,
-                        hintText: "lbl_search".tr,
-                        alignment: Alignment.center,
-                      );
-                    },
+                  child: CustomSearchView(
+                    controller: searchController,
+                    hintText: "Search",
+                    alignment: Alignment.center,
                   ),
                 ),
               ),
@@ -88,10 +69,10 @@ class Iphone11ProMaxThreeTabContainerScreenState
                 child: TabBarView(
                   controller: tabviewController,
                   children: [
-                    Iphone11ProMaxThreePage.builder(context),
-                    Iphone11ProMaxThreePage.builder(context),
-                    Iphone11ProMaxThreePage.builder(context),
-                    Iphone11ProMaxThreePage.builder(context),
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
                   ],
                 ),
               ),
@@ -150,22 +131,22 @@ class Iphone11ProMaxThreeTabContainerScreenState
         tabs: [
           Tab(
             child: Text(
-              "lbl_foods".tr,
+              "Foods",
             ),
           ),
           Tab(
             child: Text(
-              "lbl_platters".tr,
+              "Platters",
             ),
           ),
           Tab(
             child: Text(
-              "lbl_snacks".tr,
+              "Snacks",
             ),
           ),
           Tab(
             child: Text(
-              "lbl_beverages".tr,
+              "Beverages",
             ),
           ),
         ],

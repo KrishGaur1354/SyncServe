@@ -1,28 +1,13 @@
 import '../my_rewards_screen/widgets/userprofile_item_widget.dart';
-import 'models/my_rewards_model.dart';
-import 'models/userprofile_item_model.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
-import 'provider/my_rewards_provider.dart';
 
-class MyRewardsScreen extends StatefulWidget {
-  const MyRewardsScreen({Key? key}) : super(key: key);
+// ignore_for_file: must_be_immutable
+class MyRewardsScreen extends StatelessWidget {
+  MyRewardsScreen({Key? key}) : super(key: key);
 
-  @override
-  MyRewardsScreenState createState() => MyRewardsScreenState();
-
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => MyRewardsProvider(), child: MyRewardsScreen());
-  }
-}
-
-class MyRewardsScreenState extends State<MyRewardsScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  int sliderIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +63,7 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
                                                           left: 107.h),
                                                       decoration: AppDecoration
                                                           .fillOnPrimary,
-                                                      child: Text(
-                                                          "lbl_my_rewards".tr,
+                                                      child: Text("My Rewards",
                                                           style: CustomTextStyles
                                                               .titleMediumMulishOnPrimary))
                                                 ]),
@@ -87,8 +71,7 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
                                                 Align(
                                                     alignment: Alignment.center,
                                                     child: Text(
-                                                        "msg_offers_promotions"
-                                                            .tr,
+                                                        "Offers & Promotions",
                                                         style: theme.textTheme
                                                             .displaySmall)),
                                                 SizedBox(height: 73.v)
@@ -113,8 +96,7 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
                                                             EdgeInsets.only(
                                                                 left: 234.h),
                                                         child: Text(
-                                                            "lbl_get_new_rewards"
-                                                                .tr,
+                                                            "Get new rewards",
                                                             style: CustomTextStyles
                                                                 .titleMediumMulishBluegray600))),
                                                 SizedBox(height: 14.v),
@@ -129,25 +111,21 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
 
   /// Section Widget
   Widget _buildUserProfile(BuildContext context) {
-    return Consumer<MyRewardsProvider>(builder: (context, provider, child) {
-      return CarouselSlider.builder(
-          options: CarouselOptions(
-              height: 184.v,
-              initialPage: 0,
-              autoPlay: true,
-              viewportFraction: 1.0,
-              enableInfiniteScroll: false,
-              scrollDirection: Axis.horizontal,
-              onPageChanged: (index, reason) {
-                provider.sliderIndex = index;
-              }),
-          itemCount: provider.myRewardsModelObj.userprofileItemList.length,
-          itemBuilder: (context, index, realIndex) {
-            UserprofileItemModel model =
-                provider.myRewardsModelObj.userprofileItemList[index];
-            return UserprofileItemWidget(model);
-          });
-    });
+    return CarouselSlider.builder(
+        options: CarouselOptions(
+            height: 184.v,
+            initialPage: 0,
+            autoPlay: true,
+            viewportFraction: 1.0,
+            enableInfiniteScroll: false,
+            scrollDirection: Axis.horizontal,
+            onPageChanged: (index, reason) {
+              sliderIndex = index;
+            }),
+        itemCount: 3,
+        itemBuilder: (context, index, realIndex) {
+          return UserprofileItemWidget();
+        });
   }
 
   /// Section Widget
@@ -162,11 +140,11 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                Text("lbl_refer_a_friend".tr,
+                Text("Refer a friend",
                     style:
                         CustomTextStyles.titleMediumMulishOnPrimaryContainer),
                 SizedBox(height: 16.v),
-                Text("msg_share_your_promo".tr,
+                Text("Share your promo code with a friend",
                     style: CustomTextStyles.titleSmallMulishBluegray300)
               ])),
           CustomImageView(
@@ -189,11 +167,11 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                Text("lbl_3_for_1".tr,
+                Text("3 for 1",
                     style:
                         CustomTextStyles.titleMediumMulishOnPrimaryContainer),
                 SizedBox(height: 16.v),
-                Text("msg_buy_3_dishes_and".tr,
+                Text("Buy 3 dishes and get 1 for free",
                     style: CustomTextStyles.titleSmallMulishBluegray300)
               ])),
           CustomImageView(
@@ -216,11 +194,11 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                Text("lbl_240_points".tr,
+                Text("240 points",
                     style:
                         CustomTextStyles.titleMediumMulishOnPrimaryContainer),
                 SizedBox(height: 14.v),
-                Text("msg_transform_your_points".tr,
+                Text("Transform your points in real INR",
                     style: CustomTextStyles.titleSmallMulishBluegray300)
               ])),
           CustomImageView(
@@ -231,8 +209,8 @@ class MyRewardsScreenState extends State<MyRewardsScreen> {
         ]));
   }
 
-  /// Navigates to the previous screen.
+  /// Navigates back to the previous screen.
   onTapImgArrowLeft(BuildContext context) {
-    NavigatorService.goBack();
+    Navigator.pop(context);
   }
 }

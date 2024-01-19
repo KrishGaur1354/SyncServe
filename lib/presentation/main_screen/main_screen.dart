@@ -1,34 +1,11 @@
-import 'models/iphone_11_pro_max_one_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
 import 'package:syncserve/widgets/app_bar/appbar_trailing_iconbutton.dart';
 import 'package:syncserve/widgets/app_bar/custom_app_bar.dart';
 import 'package:syncserve/widgets/custom_elevated_button.dart';
-import 'provider/iphone_11_pro_max_one_provider.dart';
 
-class Iphone11ProMaxOneScreen extends StatefulWidget {
-  const Iphone11ProMaxOneScreen({Key? key}) : super(key: key);
-
-  @override
-  Iphone11ProMaxOneScreenState createState() => Iphone11ProMaxOneScreenState();
-
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => Iphone11ProMaxOneProvider(),
-        child: Iphone11ProMaxOneScreen());
-  }
-}
-
-class Iphone11ProMaxOneScreenState extends State<Iphone11ProMaxOneScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      NavigatorService.popAndPushNamed(
-        AppRoutes.iphone11ProMaxThreeTabContainerScreen,
-      );
-    });
-  }
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +22,7 @@ class Iphone11ProMaxOneScreenState extends State<Iphone11ProMaxOneScreen> {
                       Container(
                           width: 156.h,
                           margin: EdgeInsets.only(left: 16.h),
-                          child: Text("msg_budget_friendly".tr,
+                          child: Text("Budget-Friendly Bites",
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               style: theme.textTheme.displayMedium)),
@@ -59,7 +36,7 @@ class Iphone11ProMaxOneScreenState extends State<Iphone11ProMaxOneScreen> {
                                 child: Container(
                                     width: 213.h,
                                     margin: EdgeInsets.only(right: 11.h),
-                                    child: Text("msg_waste_free_delights".tr,
+                                    child: Text("Waste-Free Delights",
                                         maxLines: 3,
                                         overflow: TextOverflow.ellipsis,
                                         textAlign: TextAlign.right,
@@ -84,13 +61,13 @@ class Iphone11ProMaxOneScreenState extends State<Iphone11ProMaxOneScreen> {
                                 margin: EdgeInsets.only(bottom: 11.v)),
                             CustomElevatedButton(
                                 width: 297.h,
-                                text: "lbl_get_started".tr,
+                                text: "Get started",
                                 margin: EdgeInsets.only(left: 51.h),
                                 buttonStyle: CustomButtonStyles.outlineBlack,
                                 buttonTextStyle:
                                     CustomTextStyles.titleMediumGreen900,
                                 onPressed: () {
-                                  onTapGetStarted(context);
+                                  navigatetologin(context);
                                 },
                                 alignment: Alignment.bottomLeft)
                           ])),
@@ -107,10 +84,8 @@ class Iphone11ProMaxOneScreenState extends State<Iphone11ProMaxOneScreen> {
     ]);
   }
 
-  /// Navigates to the iphone11ProMaxTwoScreen when the action is triggered.
-  onTapGetStarted(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.iphone11ProMaxTwoScreen,
-    );
+  /// Navigates to the loginScreen when the action is triggered.
+  navigatetologin(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.loginScreen);
   }
 }
