@@ -1,29 +1,11 @@
-import 'models/app_navigation_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
-import 'provider/app_navigation_provider.dart';
 
-class AppNavigationScreen extends StatefulWidget {
+class AppNavigationScreen extends StatelessWidget {
   const AppNavigationScreen({Key? key})
       : super(
           key: key,
         );
-
-  @override
-  AppNavigationScreenState createState() => AppNavigationScreenState();
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AppNavigationProvider(),
-      child: AppNavigationScreen(),
-    );
-  }
-}
-
-class AppNavigationScreenState extends State<AppNavigationScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,70 +27,39 @@ class AppNavigationScreenState extends State<AppNavigationScreen> {
                       children: [
                         _buildScreenTitle(
                           context,
-                          screenTitle: "iPhone 11 Pro Max - One".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxOneScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Two".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxTwoScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle:
-                              "iPhone 11 Pro Max - Three - Tab Container".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxThreeTabContainerScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Fifteen".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxFifteenScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Sixteen".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxSixteenScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Five".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxFiveScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Six".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxSixScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Four".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxFourScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Seventeen".tr,
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxSeventeenScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "My Rewards".tr,
+                          screenTitle: "Main",
                           onTapScreenTitle: () =>
-                              onTapScreenTitle(AppRoutes.myRewardsScreen),
+                              onTapScreenTitle(context, AppRoutes.mainScreen),
                         ),
                         _buildScreenTitle(
                           context,
-                          screenTitle: "iPhone 11 Pro Max - Thirteen".tr,
+                          screenTitle: "Login",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.loginScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "Deals",
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(context, AppRoutes.dealsScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "AllFood",
                           onTapScreenTitle: () => onTapScreenTitle(
-                              AppRoutes.iphone11ProMaxThirteenScreen),
+                              context, AppRoutes.allfoodScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "iPhone 11 Pro Max - Four",
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              context, AppRoutes.iphone11ProMaxFourScreen),
+                        ),
+                        _buildScreenTitle(
+                          context,
+                          screenTitle: "My Rewards",
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              context, AppRoutes.myRewardsScreen),
                         ),
                       ],
                     ),
@@ -136,7 +87,7 @@ class AppNavigationScreenState extends State<AppNavigationScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               child: Text(
-                "App Navigation".tr,
+                "App Navigation",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF000000),
@@ -153,8 +104,7 @@ class AppNavigationScreenState extends State<AppNavigationScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 20.h),
               child: Text(
-                "Check your app's UI from the below demo screens of your app."
-                    .tr,
+                "Check your app's UI from the below demo screens of your app.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF888888),
@@ -223,7 +173,10 @@ class AppNavigationScreenState extends State<AppNavigationScreen> {
   }
 
   /// Common click event
-  void onTapScreenTitle(String routeName) {
-    NavigatorService.pushNamed(routeName);
+  void onTapScreenTitle(
+    BuildContext context,
+    String routeName,
+  ) {
+    Navigator.pushNamed(context, routeName);
   }
 }

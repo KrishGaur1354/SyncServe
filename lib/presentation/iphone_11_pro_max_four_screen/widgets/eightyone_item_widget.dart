@@ -1,17 +1,12 @@
-import '../models/eightyone_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
 
 // ignore: must_be_immutable
 class EightyoneItemWidget extends StatelessWidget {
-  EightyoneItemWidget(
-    this.eightyoneItemModelObj, {
-    Key? key,
-  }) : super(
+  const EightyoneItemWidget({Key? key})
+      : super(
           key: key,
         );
-
-  EightyoneItemModel eightyoneItemModelObj;
 
   @override
   Widget build(BuildContext context) {

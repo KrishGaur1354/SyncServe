@@ -1,27 +1,9 @@
-import 'models/iphone_11_pro_max_two_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
 import 'package:syncserve/widgets/custom_elevated_button.dart';
-import 'provider/iphone_11_pro_max_two_provider.dart';
 
-class Iphone11ProMaxTwoScreen extends StatefulWidget {
-  const Iphone11ProMaxTwoScreen({Key? key}) : super(key: key);
-
-  @override
-  Iphone11ProMaxTwoScreenState createState() => Iphone11ProMaxTwoScreenState();
-
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => Iphone11ProMaxTwoProvider(),
-        child: Iphone11ProMaxTwoScreen());
-  }
-}
-
-class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +25,12 @@ class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
                           opacity: 0.4,
                           child: Padding(
                               padding: EdgeInsets.only(left: 50.h),
-                              child: Text("lbl_email_address".tr,
+                              child: Text("Email address",
                                   style: CustomTextStyles.titleSmallBlack900))),
                       SizedBox(height: 9.v),
                       Padding(
                           padding: EdgeInsets.only(left: 50.h),
-                          child: Text("msg_kriti1298_gmail_com".tr,
+                          child: Text("kriti1298@gmail.com",
                               style: CustomTextStyles.titleMedium17)),
                       SizedBox(height: 9.v),
                       Align(
@@ -59,12 +41,12 @@ class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
                           opacity: 0.4,
                           child: Padding(
                               padding: EdgeInsets.only(left: 50.h),
-                              child: Text("lbl_password".tr,
+                              child: Text("Password",
                                   style: CustomTextStyles.titleSmallBlack900))),
                       SizedBox(height: 5.v),
                       Padding(
                           padding: EdgeInsets.only(left: 50.h),
-                          child: Text("lbl".tr,
+                          child: Text("* * * * * * * * ",
                               style: CustomTextStyles.titleMedium17)),
                       SizedBox(height: 13.v),
                       Align(
@@ -73,7 +55,7 @@ class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
                       SizedBox(height: 34.v),
                       Padding(
                           padding: EdgeInsets.only(left: 50.h),
-                          child: Text("msg_forgot_passcode".tr,
+                          child: Text("Forgot passcode?",
                               style: CustomTextStyles.titleMediumPrimary)),
                       SizedBox(height: 5.v)
                     ])),
@@ -138,8 +120,8 @@ class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("lbl_login".tr, style: theme.textTheme.titleMedium),
-                    Text("lbl_sign_up".tr, style: theme.textTheme.titleMedium)
+                    Text("Login", style: theme.textTheme.titleMedium),
+                    Text("Sign-up", style: theme.textTheme.titleMedium)
                   ]))
         ]));
   }
@@ -147,17 +129,15 @@ class Iphone11ProMaxTwoScreenState extends State<Iphone11ProMaxTwoScreen> {
   /// Section Widget
   Widget _buildLoginButton(BuildContext context) {
     return CustomElevatedButton(
-        text: "lbl_login".tr,
+        text: "Login",
         margin: EdgeInsets.only(left: 50.h, right: 50.h, bottom: 41.v),
         onPressed: () {
           onTapLoginButton(context);
         });
   }
 
-  /// Navigates to the iphone11ProMaxThreeTabContainerScreen when the action is triggered.
+  /// Navigates to the allfoodScreen when the action is triggered.
   onTapLoginButton(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.iphone11ProMaxThreeTabContainerScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.allfoodScreen);
   }
 }

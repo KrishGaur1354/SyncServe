@@ -1,30 +1,11 @@
-import 'models/iphone_11_pro_max_five_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
 import 'package:syncserve/widgets/app_bar/appbar_leading_image.dart';
-import 'package:syncserve/widgets/app_bar/appbar_subtitle_one.dart';
+import 'package:syncserve/widgets/app_bar/appbar_title.dart';
 import 'package:syncserve/widgets/app_bar/custom_app_bar.dart';
-import 'provider/iphone_11_pro_max_five_provider.dart';
 
-class Iphone11ProMaxFiveScreen extends StatefulWidget {
-  const Iphone11ProMaxFiveScreen({Key? key}) : super(key: key);
-
-  @override
-  Iphone11ProMaxFiveScreenState createState() =>
-      Iphone11ProMaxFiveScreenState();
-
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => Iphone11ProMaxFiveProvider(),
-        child: Iphone11ProMaxFiveScreen());
-  }
-}
-
-class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class AllfoodScreen extends StatelessWidget {
+  const AllfoodScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +38,7 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
                                             margin: EdgeInsets.only(
                                                 left: 45.h, right: 37.h),
                                             child: Text(
-                                                "msg_found_6_results".tr,
+                                                "Found 6 results for “Continental”",
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.center,
@@ -83,12 +64,10 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
                                                                 _buildEggAndCucumber(
                                                                     context,
                                                                     dynamicText:
-                                                                        "msg_veggie_tomato_mix"
-                                                                            .tr,
+                                                                        "Veggie tomato mix",
                                                                     dynamicText1:
-                                                                        "lbl_rs_100"
-                                                                            .tr,
-                                                                    onTapEggAndCucumber:
+                                                                        "Rs. 100",
+                                                                    navgigatetofood1:
                                                                         () {
                                                                   onTapEggAndCucumber(
                                                                       context);
@@ -116,11 +95,11 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
                                                                                         height: 49.v,
                                                                                         width: 103.h,
                                                                                         child: Stack(alignment: Alignment.center, children: [
-                                                                                          Align(alignment: Alignment.center, child: SizedBox(width: 103.h, child: Text("msg_fried_chicken_m".tr, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: theme.textTheme.titleLarge!.copyWith(height: 1.01)))),
-                                                                                          Align(alignment: Alignment.center, child: SizedBox(width: 103.h, child: Text("msg_fried_chicken_m".tr, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: theme.textTheme.titleLarge!.copyWith(height: 1.01))))
+                                                                                          Align(alignment: Alignment.center, child: SizedBox(width: 103.h, child: Text("Fried chicken m.", maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: theme.textTheme.titleLarge!.copyWith(height: 1.01)))),
+                                                                                          Align(alignment: Alignment.center, child: SizedBox(width: 103.h, child: Text("Fried chicken m.", maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: theme.textTheme.titleLarge!.copyWith(height: 1.01))))
                                                                                         ])),
                                                                                     SizedBox(height: 5.v),
-                                                                                    Padding(padding: EdgeInsets.only(left: 20.h), child: Text("lbl_rs_180".tr, style: CustomTextStyles.titleLargePrimary23))
+                                                                                    Padding(padding: EdgeInsets.only(left: 20.h), child: Text("Rs. 180", style: CustomTextStyles.titleLargePrimary23))
                                                                                   ]))),
                                                                           CustomImageView(
                                                                               imagePath: ImageConstant.imgImage21,
@@ -141,21 +120,22 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
                                                             _buildEggAndCucumber(
                                                                 context,
                                                                 dynamicText:
-                                                                    "msg_egg_and_cucmber"
-                                                                        .tr,
+                                                                    "Egg and cucmber...",
                                                                 dynamicText1:
-                                                                    "lbl_rs_110"
-                                                                        .tr),
+                                                                    "Rs. 110",
+                                                                navgigatetofood1:
+                                                                    () {
+                                                              navgigatetofood1(
+                                                                  context);
+                                                            }),
                                                             SizedBox(
                                                                 height: 23.v),
                                                             _buildEggAndCucumber(
                                                                 context,
                                                                 dynamicText:
-                                                                    "msg_thai_egg_curry_w"
-                                                                        .tr,
+                                                                    "Thai egg curry w/ rice",
                                                                 dynamicText1:
-                                                                    "lbl_rs_200"
-                                                                        .tr)
+                                                                    "Rs. 200")
                                                           ])))
                                                 ])),
                                         SizedBox(height: 93.v)
@@ -163,14 +143,14 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
                           Padding(
                               padding: EdgeInsets.only(right: 33.h),
                               child: _buildEggAndCucumber(context,
-                                  dynamicText: "msg_egg_and_cucmber".tr,
-                                  dynamicText1: "lbl_n1_900".tr)),
+                                  dynamicText: "Egg and cucmber...",
+                                  dynamicText1: "N1,900")),
                           Padding(
                               padding:
                                   EdgeInsets.only(left: 34.h, bottom: 61.v),
                               child: _buildEggAndCucumber(context,
-                                  dynamicText: "msg_veggie_tomato_mix".tr,
-                                  dynamicText1: "lbl_n1_900".tr))
+                                  dynamicText: "Veggie tomato mix",
+                                  dynamicText1: "N1,900"))
                         ]))))));
   }
 
@@ -187,9 +167,8 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
         title: Padding(
             padding: EdgeInsets.only(left: 7.h),
             child: Row(children: [
-              AppbarSubtitleOne(
-                  text: "lbl_continental".tr,
-                  margin: EdgeInsets.only(top: 4.v)),
+              AppbarTitle(
+                  text: "Continental", margin: EdgeInsets.only(top: 4.v)),
               Padding(
                   padding: EdgeInsets.only(left: 5.h),
                   child: SizedBox(
@@ -203,11 +182,11 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
     BuildContext context, {
     required String dynamicText,
     required String dynamicText1,
-    Function? onTapEggAndCucumber,
+    Function? navgigatetofood1,
   }) {
     return GestureDetector(
         onTap: () {
-          onTapEggAndCucumber!.call();
+          navgigatetofood1!.call();
         },
         child: SizedBox(
             height: 252.v,
@@ -251,15 +230,18 @@ class Iphone11ProMaxFiveScreenState extends State<Iphone11ProMaxFiveScreen> {
             ])));
   }
 
-  /// Navigates to the previous screen.
+  /// Navigates back to the previous screen.
   onTapArrowLeft(BuildContext context) {
-    NavigatorService.goBack();
+    Navigator.pop(context);
   }
 
   /// Navigates to the iphone11ProMaxFourScreen when the action is triggered.
   onTapEggAndCucumber(BuildContext context) {
-    NavigatorService.pushNamed(
-      AppRoutes.iphone11ProMaxFourScreen,
-    );
+    Navigator.pushNamed(context, AppRoutes.iphone11ProMaxFourScreen);
+  }
+
+  /// Navigates to the iphone11ProMaxFourScreen when the action is triggered.
+  navgigatetofood1(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.iphone11ProMaxFourScreen);
   }
 }

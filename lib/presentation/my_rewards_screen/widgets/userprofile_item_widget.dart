@@ -1,18 +1,13 @@
-import '../models/userprofile_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:syncserve/core/app_export.dart';
 import 'package:syncserve/widgets/custom_elevated_button.dart';
 
 // ignore: must_be_immutable
 class UserprofileItemWidget extends StatelessWidget {
-  UserprofileItemWidget(
-    this.userprofileItemModelObj, {
-    Key? key,
-  }) : super(
+  const UserprofileItemWidget({Key? key})
+      : super(
           key: key,
         );
-
-  UserprofileItemModel userprofileItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +35,14 @@ class UserprofileItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "lbl_new_client".tr,
+                      "New client",
                       style: theme.textTheme.bodySmall,
                     ),
                     SizedBox(height: 5.v),
                     SizedBox(
                       width: 141.h,
                       child: Text(
-                        "msg_exclusive_restaurants".tr,
+                        "Exclusive Restaurants Offers",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: CustomTextStyles.titleMediumMulishOnPrimary
@@ -59,7 +54,7 @@ class UserprofileItemWidget extends StatelessWidget {
                     SizedBox(height: 11.v),
                     CustomElevatedButton(
                       height: 46.v,
-                      text: "lbl_claim_reward".tr,
+                      text: "Claim reward",
                       margin: EdgeInsets.only(right: 4.h),
                       buttonStyle: CustomButtonStyles.fillTealTL12,
                       buttonTextStyle:
