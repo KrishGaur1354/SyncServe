@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class BaseButton extends StatelessWidget {
   BaseButton({

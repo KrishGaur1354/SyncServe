@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarTrailingImage extends StatelessWidget {
@@ -26,14 +26,11 @@ class AppbarTrailingImage extends StatelessWidget {
       },
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
-        child: Opacity(
-          opacity: 0.3,
-          child: CustomImageView(
-            imagePath: imagePath,
-            height: 24.adaptSize,
-            width: 24.adaptSize,
-            fit: BoxFit.contain,
-          ),
+        child: CustomImageView(
+          imagePath: imagePath,
+          height: 24.adaptSize,
+          width: 24.adaptSize,
+          fit: BoxFit.contain,
         ),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class CustomSearchView extends StatelessWidget {
   CustomSearchView({
@@ -104,7 +104,7 @@ class CustomSearchView extends StatelessWidget {
         hintStyle: hintStyle ?? CustomTextStyles.titleMediumBlack900,
         prefixIcon: prefix ??
             Container(
-              margin: EdgeInsets.fromLTRB(30.h, 21.v, 16.h, 21.v),
+              margin: EdgeInsets.fromLTRB(12.h, 21.v, 14.h, 21.v),
               child: CustomImageView(
                 imagePath: ImageConstant.imgSearch,
                 height: 18.adaptSize,
@@ -139,7 +139,7 @@ class CustomSearchView extends StatelessWidget {
               right: 19.h,
               bottom: 19.v,
             ),
-        fillColor: fillColor ?? appTheme.gray20001,
+        fillColor: fillColor ?? appTheme.blueGray100,
         filled: filled,
         border: borderDecoration ??
             OutlineInputBorder(

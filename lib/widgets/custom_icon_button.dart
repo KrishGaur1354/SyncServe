@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class CustomIconButton extends StatelessWidget {
   CustomIconButton({
@@ -50,7 +50,7 @@ class CustomIconButton extends StatelessWidget {
             padding: padding ?? EdgeInsets.zero,
             decoration: decoration ??
                 BoxDecoration(
-                  color: theme.colorScheme.onPrimary.withOpacity(1),
+                  color: theme.colorScheme.onPrimary,
                   borderRadius: BorderRadius.circular(36.h),
                 ),
             child: child,

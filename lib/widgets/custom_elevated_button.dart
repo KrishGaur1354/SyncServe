@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
-import 'package:syncserve/widgets/base_button.dart';
+import 'package:syncserve_v1/core/app_export.dart';
+import 'package:syncserve_v1/widgets/base_button.dart';
 
 class CustomElevatedButton extends BaseButton {
   CustomElevatedButton({
@@ -60,7 +60,7 @@ class CustomElevatedButton extends BaseButton {
               leftIcon ?? const SizedBox.shrink(),
               Text(
                 text,
-                style: buttonTextStyle ?? CustomTextStyles.titleMediumGray10001,
+                style: buttonTextStyle ?? CustomTextStyles.titleMediumGray100,
               ),
               rightIcon ?? const SizedBox.shrink(),
             ],

@@ -1,69 +1,140 @@
+import 'bloc/login_bloc.dart';
+import 'models/login_model.dart';
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
-import 'package:syncserve/widgets/custom_elevated_button.dart';
+import 'package:syncserve_v1/core/app_export.dart';
+import 'package:syncserve_v1/core/utils/validation_functions.dart';
+import 'package:syncserve_v1/widgets/custom_elevated_button.dart';
+import 'package:syncserve_v1/widgets/custom_text_form_field.dart';
 
+// ignore_for_file: must_be_immutable
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  static Widget builder(BuildContext context) {
+    return BlocProvider<LoginBloc>(
+        create: (context) => LoginBloc(LoginState(loginModelObj: LoginModel()))
+          ..add(LoginInitialEvent()),
+        child: LoginScreen());
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.gray10004,
+            backgroundColor: appTheme.gray10002,
+            resizeToAvoidBottomInset: false,
             body: SizedBox(
-                width: double.maxFinite,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildStackView(context),
-                      SizedBox(
-                          width: 184.h,
-                          child: Divider(
-                              color: theme.colorScheme.primary, indent: 50.h)),
-                      SizedBox(height: 62.v),
-                      Opacity(
-                          opacity: 0.4,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 50.h),
-                              child: Text("Email address",
-                                  style: CustomTextStyles.titleSmallBlack900))),
-                      SizedBox(height: 9.v),
-                      Padding(
-                          padding: EdgeInsets.only(left: 50.h),
-                          child: Text("kriti1298@gmail.com",
-                              style: CustomTextStyles.titleMedium17)),
-                      SizedBox(height: 9.v),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Divider(indent: 50.h, endIndent: 50.h)),
-                      SizedBox(height: 46.v),
-                      Opacity(
-                          opacity: 0.4,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 50.h),
-                              child: Text("Password",
-                                  style: CustomTextStyles.titleSmallBlack900))),
-                      SizedBox(height: 5.v),
-                      Padding(
-                          padding: EdgeInsets.only(left: 50.h),
-                          child: Text("* * * * * * * * ",
-                              style: CustomTextStyles.titleMedium17)),
-                      SizedBox(height: 13.v),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Divider(indent: 50.h, endIndent: 50.h)),
-                      SizedBox(height: 34.v),
-                      Padding(
-                          padding: EdgeInsets.only(left: 50.h),
-                          child: Text("Forgot passcode?",
-                              style: CustomTextStyles.titleMediumPrimary)),
-                      SizedBox(height: 5.v)
-                    ])),
-            bottomNavigationBar: _buildLoginButton(context)));
+                width: SizeUtils.width,
+                child: SingleChildScrollView(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: Form(
+                        key: _formKey,
+                        child: SizedBox(
+                            width: double.maxFinite,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  _buildLoginSection(context),
+                                  SizedBox(
+                                      width: 184.h,
+                                      child: Divider(indent: 50.h)),
+                                  SizedBox(height: 39.v),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 51.h, right: 63.h),
+                                      child: BlocSelector<LoginBloc, LoginState,
+                                              TextEditingController?>(
+                                          selector: (state) =>
+                                              state.userNameController,
+                                          builder:
+                                              (context, userNameController) {
+                                            return CustomTextFormField(
+                                                controller: userNameController,
+                                                hintText: "lbl_username"
+                                                    .tr
+                                                    .toUpperCase(),
+                                                hintStyle: CustomTextStyles
+                                                    .bodyMediumMontserratBlack900,
+                                                alignment: Alignment.center,
+                                                prefix: Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        12.h, 13.v, 20.h, 12.v),
+                                                    child: CustomImageView(
+                                                        imagePath: ImageConstant
+                                                            .imgUser,
+                                                        height: 20.adaptSize,
+                                                        width: 20.adaptSize)),
+                                                prefixConstraints:
+                                                    BoxConstraints(
+                                                        maxHeight: 45.v),
+                                                validator: (value) {
+                                                  if (!isText(value)) {
+                                                    return "err_msg_please_enter_valid_text"
+                                                        .tr;
+                                                  }
+                                                  return null;
+                                                });
+                                          })),
+                                  SizedBox(height: 20.v),
+                                  Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 51.h, right: 63.h),
+                                      child: BlocSelector<LoginBloc, LoginState,
+                                              TextEditingController?>(
+                                          selector: (state) =>
+                                              state.passwordController,
+                                          builder:
+                                              (context, passwordController) {
+                                            return CustomTextFormField(
+                                                controller: passwordController,
+                                                hintText: "lbl_password"
+                                                    .tr
+                                                    .toUpperCase(),
+                                                hintStyle: CustomTextStyles
+                                                    .bodyMediumMontserratBlack900,
+                                                textInputAction:
+                                                    TextInputAction.done,
+                                                textInputType: TextInputType
+                                                    .visiblePassword,
+                                                alignment: Alignment.center,
+                                                prefix: Container(
+                                                    margin: EdgeInsets.fromLTRB(
+                                                        12.h, 13.v, 19.h, 12.v),
+                                                    child: CustomImageView(
+                                                        imagePath: ImageConstant
+                                                            .imgLock,
+                                                        height: 20.adaptSize,
+                                                        width: 20.adaptSize)),
+                                                prefixConstraints:
+                                                    BoxConstraints(
+                                                        maxHeight: 45.v),
+                                                validator: (value) {
+                                                  if (value == null ||
+                                                      (!isValidPassword(value,
+                                                          isRequired: true))) {
+                                                    return "err_msg_please_enter_valid_password"
+                                                        .tr;
+                                                  }
+                                                  return null;
+                                                },
+                                                obscureText: true);
+                                          })),
+                                  SizedBox(height: 7.v),
+                                  Padding(
+                                      padding: EdgeInsets.only(left: 54.h),
+                                      child: Text("msg_forgot_passcode".tr,
+                                          style: CustomTextStyles
+                                              .titleMediumPrimary)),
+                                  SizedBox(height: 5.v)
+                                ]))))),
+            bottomNavigationBar: _buildLoginButtonSection(context)));
   }
 
   /// Section Widget
-  Widget _buildStackView(BuildContext context) {
+  Widget _buildLoginSection(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 13.h, vertical: 12.v),
         decoration: AppDecoration.outlineBlack
@@ -85,34 +156,31 @@ class LoginScreen extends StatelessWidget {
                     child: Container(
                         height: 27.v,
                         width: 387.h,
-                        decoration: BoxDecoration(
-                            color:
-                                theme.colorScheme.onPrimary.withOpacity(1)))),
+                        decoration:
+                            BoxDecoration(color: theme.colorScheme.onPrimary))),
                 Align(
                     alignment: Alignment.topLeft,
                     child: Container(
                         height: 39.v,
                         width: 340.h,
                         margin: EdgeInsets.only(left: 18.h),
-                        decoration: BoxDecoration(
-                            color:
-                                theme.colorScheme.onPrimary.withOpacity(1)))),
+                        decoration:
+                            BoxDecoration(color: theme.colorScheme.onPrimary))),
                 Align(
                     alignment: Alignment.centerRight,
                     child: Container(
                         height: 104.v,
                         width: 30.h,
-                        decoration: BoxDecoration(
-                            color:
-                                theme.colorScheme.onPrimary.withOpacity(1)))),
+                        decoration:
+                            BoxDecoration(color: theme.colorScheme.onPrimary))),
                 Align(
                     alignment: Alignment.topLeft,
                     child: Container(
                         height: 116.v,
                         width: 18.h,
                         margin: EdgeInsets.only(top: 7.v),
-                        decoration: BoxDecoration(
-                            color: theme.colorScheme.onPrimary.withOpacity(1))))
+                        decoration:
+                            BoxDecoration(color: theme.colorScheme.onPrimary)))
               ])),
           SizedBox(height: 88.v),
           Padding(
@@ -120,24 +188,26 @@ class LoginScreen extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Login", style: theme.textTheme.titleMedium),
-                    Text("Sign-up", style: theme.textTheme.titleMedium)
+                    Text("lbl_login".tr, style: theme.textTheme.titleMedium),
+                    Text("lbl_sign_up".tr, style: theme.textTheme.titleMedium)
                   ]))
         ]));
   }
 
   /// Section Widget
-  Widget _buildLoginButton(BuildContext context) {
+  Widget _buildLoginButtonSection(BuildContext context) {
     return CustomElevatedButton(
-        text: "Login",
+        text: "lbl_login".tr,
         margin: EdgeInsets.only(left: 50.h, right: 50.h, bottom: 41.v),
         onPressed: () {
-          onTapLoginButton(context);
+          navitofood(context);
         });
   }
 
-  /// Navigates to the allfoodScreen when the action is triggered.
-  onTapLoginButton(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.allfoodScreen);
+  /// Navigates to the searchScreen when the action is triggered.
+  navitofood(BuildContext context) {
+    NavigatorService.pushNamed(
+      AppRoutes.searchScreen,
+    );
   }
 }

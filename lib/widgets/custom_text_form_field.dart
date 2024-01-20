@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField({
@@ -109,7 +109,12 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffix,
         suffixIconConstraints: suffixConstraints,
         isDense: true,
-        contentPadding: contentPadding,
+        contentPadding: contentPadding ??
+            EdgeInsets.only(
+              top: 13.v,
+              right: 13.h,
+              bottom: 13.v,
+            ),
         fillColor: fillColor,
         filled: filled,
         border: borderDecoration ??
@@ -125,9 +130,11 @@ class CustomTextFormField extends StatelessWidget {
               ),
             ),
         focusedBorder: borderDecoration ??
-            UnderlineInputBorder(
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4.h),
               borderSide: BorderSide(
-                color: appTheme.black900,
+                color: theme.colorScheme.primary,
+                width: 1,
               ),
             ),
       );

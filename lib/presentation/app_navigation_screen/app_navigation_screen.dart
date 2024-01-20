@@ -1,5 +1,7 @@
+import 'bloc/app_navigation_bloc.dart';
+import 'models/app_navigation_model.dart';
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class AppNavigationScreen extends StatelessWidget {
   const AppNavigationScreen({Key? key})
@@ -7,69 +9,101 @@ class AppNavigationScreen extends StatelessWidget {
           key: key,
         );
 
+  static Widget builder(BuildContext context) {
+    return BlocProvider<AppNavigationBloc>(
+      create: (context) => AppNavigationBloc(AppNavigationState(
+        appNavigationModelObj: AppNavigationModel(),
+      ))
+        ..add(AppNavigationInitialEvent()),
+      child: AppNavigationScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color(0XFFFFFFFF),
-        body: SizedBox(
-          width: 375.h,
-          child: Column(
-            children: [
-              _buildAppNavigation(context),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0XFFFFFFFF),
-                    ),
-                    child: Column(
-                      children: [
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "Main",
-                          onTapScreenTitle: () =>
-                              onTapScreenTitle(context, AppRoutes.mainScreen),
+    return BlocBuilder<AppNavigationBloc, AppNavigationState>(
+      builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Color(0XFFFFFFFF),
+            body: SizedBox(
+              width: 375.h,
+              child: Column(
+                children: [
+                  _buildAppNavigation(context),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0XFFFFFFFF),
                         ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "Login",
-                          onTapScreenTitle: () =>
-                              onTapScreenTitle(context, AppRoutes.loginScreen),
+                        child: Column(
+                          children: [
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Splash".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.splashScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Login".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.loginScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "History".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.historyScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Orders".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.ordersScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Search".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.searchScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Payment".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.paymentScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Food1".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.food1Screen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Maps".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.mapsScreen),
+                            ),
+                            _buildScreenTitle(
+                              context,
+                              screenTitle: "Profile".tr,
+                              onTapScreenTitle: () =>
+                                  onTapScreenTitle(AppRoutes.profileScreen),
+                            ),
+                          ],
                         ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "Deals",
-                          onTapScreenTitle: () =>
-                              onTapScreenTitle(context, AppRoutes.dealsScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "AllFood",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.allfoodScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "iPhone 11 Pro Max - Four",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.iphone11ProMaxFourScreen),
-                        ),
-                        _buildScreenTitle(
-                          context,
-                          screenTitle: "My Rewards",
-                          onTapScreenTitle: () => onTapScreenTitle(
-                              context, AppRoutes.myRewardsScreen),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -87,7 +121,7 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.h),
               child: Text(
-                "App Navigation",
+                "App Navigation".tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF000000),
@@ -104,7 +138,8 @@ class AppNavigationScreen extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 20.h),
               child: Text(
-                "Check your app's UI from the below demo screens of your app.",
+                "Check your app's UI from the below demo screens of your app."
+                    .tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0XFF888888),
@@ -173,10 +208,7 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Common click event
-  void onTapScreenTitle(
-    BuildContext context,
-    String routeName,
-  ) {
-    Navigator.pushNamed(context, routeName);
+  void onTapScreenTitle(String routeName) {
+    NavigatorService.pushNamed(routeName);
   }
 }

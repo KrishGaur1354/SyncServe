@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 import 'package:flutter/material.dart';
 
 /// A class that offers pre-defined button styles for customizing button appearance.
@@ -17,16 +17,10 @@ class CustomButtonStyles {
           borderRadius: BorderRadius.circular(27.h),
         ),
       );
-  static ButtonStyle get fillTealTL12 => ElevatedButton.styleFrom(
-        backgroundColor: appTheme.teal700,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.h),
-        ),
-      );
 
   // Outline button style
   static ButtonStyle get outlineBlack => ElevatedButton.styleFrom(
-        backgroundColor: theme.colorScheme.onPrimary.withOpacity(1),
+        backgroundColor: theme.colorScheme.onPrimary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.h),
         ),

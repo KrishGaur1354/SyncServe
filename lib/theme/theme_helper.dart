@@ -2,11 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/app_export.dart';
 
-String _appTheme = "primary";
-
 /// Helper class for managing themes and colors.
 class ThemeHelper {
-  // A map of custom color themes supported by the app
+  // The current app theme
+  var _appTheme = PrefUtils().getThemeData();
+
+// A map of custom color themes supported by the app
   Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
@@ -15,11 +16,6 @@ class ThemeHelper {
   Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
-
-  /// Changes the app theme to [_newTheme].
-  void changeTheme(String _newTheme) {
-    _appTheme = _newTheme;
-  }
 
   /// Returns the primary colors for the current theme.
   PrimaryColors _getThemeColors() {
@@ -48,7 +44,7 @@ class ThemeHelper {
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
       textTheme: TextThemes.textTheme(colorScheme),
-      scaffoldBackgroundColor: appTheme.gray10003,
+      scaffoldBackgroundColor: appTheme.gray10001,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: colorScheme.primary,
@@ -63,9 +59,9 @@ class ThemeHelper {
         ),
       ),
       dividerTheme: DividerThemeData(
-        thickness: 1,
-        space: 1,
-        color: appTheme.black900,
+        thickness: 3,
+        space: 3,
+        color: colorScheme.primary,
       ),
     );
   }
@@ -92,14 +88,8 @@ class TextThemes {
           fontFamily: 'Inria Sans',
           fontWeight: FontWeight.w400,
         ),
-        bodySmall: TextStyle(
-          color: appTheme.blueGray30001,
-          fontSize: 12.fSize,
-          fontFamily: 'Mulish',
-          fontWeight: FontWeight.w400,
-        ),
         displayMedium: TextStyle(
-          color: colorScheme.onPrimary.withOpacity(1),
+          color: colorScheme.onPrimary,
           fontSize: 42.fSize,
           fontFamily: 'Josefin Sans',
           fontWeight: FontWeight.w700,
@@ -123,8 +113,8 @@ class TextThemes {
           fontWeight: FontWeight.w700,
         ),
         titleLarge: TextStyle(
-          color: appTheme.black900,
-          fontSize: 22.fSize,
+          color: colorScheme.primary,
+          fontSize: 23.fSize,
           fontFamily: 'Inria Sans',
           fontWeight: FontWeight.w700,
         ),
@@ -135,7 +125,7 @@ class TextThemes {
           fontWeight: FontWeight.w700,
         ),
         titleSmall: TextStyle(
-          color: colorScheme.secondaryContainer,
+          color: colorScheme.onPrimaryContainer,
           fontSize: 15.fSize,
           fontFamily: 'Inria Sans',
           fontWeight: FontWeight.w700,
@@ -148,15 +138,14 @@ class ColorSchemes {
   static final primaryColorScheme = ColorScheme.light(
     // Primary colors
     primary: Color(0XFF004225),
-    primaryContainer: Color(0XFFADADAF),
-    secondaryContainer: Color(0X7E004225),
+    primaryContainer: Color(0XFF9F9F9F),
 
     // Error colors
     errorContainer: Color(0X19C33F15),
 
     // On colors(text colors)
-    onPrimary: Color(0X0FFFFFFF),
-    onPrimaryContainer: Color(0XFF212134),
+    onPrimary: Color(0XFFFFFFFF),
+    onPrimaryContainer: Color(0X7E004225),
   );
 }
 
@@ -166,30 +155,18 @@ class PrimaryColors {
   Color get black900 => Color(0XFF000000);
 
   // BlueGray
-  Color get blueGray300 => Color(0XFF8E8EA9);
-  Color get blueGray30001 => Color(0XFFA5A5BA);
-  Color get blueGray600 => Color(0XFF666687);
-
-  // BlueGraya
-  Color get blueGray9000a => Color(0X0A323247);
+  Color get blueGray100 => Color(0XFFCECECE);
 
   // DeepOrange
   Color get deepOrangeA400 => Color(0XFFFA4A0C);
 
   // Gray
-  Color get gray100 => Color(0XFFF4F4F8);
-  Color get gray10001 => Color(0XFFF6F6F9);
-  Color get gray10002 => Color(0XFFF7F7F7);
-  Color get gray10003 => Color(0XFFF5F5F8);
-  Color get gray10004 => Color(0XFFF2F2F2);
+  Color get gray100 => Color(0XFFF6F6F9);
+  Color get gray10001 => Color(0XFFF5F5F8);
+  Color get gray10002 => Color(0XFFF2F2F2);
   Color get gray200 => Color(0XFFEEEEEE);
-  Color get gray20001 => Color(0XFFEFEEEE);
   Color get gray400 => Color(0XFFC4C4C4);
   Color get gray50 => Color(0XFFF9F9F9);
-  Color get gray500 => Color(0XFF99999D);
-  Color get gray50001 => Color(0XFF9F9F9F);
-  Color get gray5001 => Color(0XFFFCFCFC);
-  Color get gray60019 => Color(0X19717171);
   Color get gray80019 => Color(0X19393939);
 
   // Green

@@ -1,35 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/presentation/main_screen/main_screen.dart';
-import 'package:syncserve/presentation/login_screen/login_screen.dart';
-import 'package:syncserve/presentation/deals_screen/deals_screen.dart';
-import 'package:syncserve/presentation/allfood_screen/allfood_screen.dart';
-import 'package:syncserve/presentation/iphone_11_pro_max_four_screen/iphone_11_pro_max_four_screen.dart';
-import 'package:syncserve/presentation/my_rewards_screen/my_rewards_screen.dart';
-import 'package:syncserve/presentation/app_navigation_screen/app_navigation_screen.dart';
+import 'package:syncserve_v1/presentation/splash_screen/splash_screen.dart';
+import 'package:syncserve_v1/presentation/login_screen/login_screen.dart';
+import 'package:syncserve_v1/presentation/history_screen/history_screen.dart';
+import 'package:syncserve_v1/presentation/orders_screen/orders_screen.dart';
+import 'package:syncserve_v1/presentation/search_screen/search_screen.dart';
+import 'package:syncserve_v1/presentation/payment_screen/payment_screen.dart';
+import 'package:syncserve_v1/presentation/food1_screen/food1_screen.dart';
+import 'package:syncserve_v1/presentation/maps_screen/maps_screen.dart';
+import 'package:syncserve_v1/presentation/profile_screen/profile_screen.dart';
+import 'package:syncserve_v1/presentation/app_navigation_screen/app_navigation_screen.dart';
 
 class AppRoutes {
-  static const String mainScreen = '/main_screen';
+  static const String splashScreen = '/splash_screen';
 
   static const String loginScreen = '/login_screen';
 
-  static const String dealsScreen = '/deals_screen';
+  static const String historyScreen = '/history_screen';
 
-  static const String allfoodScreen = '/allfood_screen';
+  static const String ordersScreen = '/orders_screen';
 
-  static const String iphone11ProMaxFourScreen =
-      '/iphone_11_pro_max_four_screen';
+  static const String searchScreen = '/search_screen';
 
-  static const String myRewardsScreen = '/my_rewards_screen';
+  static const String paymentScreen = '/payment_screen';
+
+  static const String food1Screen = '/food1_screen';
+
+  static const String mapsScreen = '/maps_screen';
+
+  static const String profileScreen = '/profile_screen';
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static Map<String, WidgetBuilder> routes = {
-    mainScreen: (context) => MainScreen(),
-    loginScreen: (context) => LoginScreen(),
-    dealsScreen: (context) => DealsScreen(),
-    allfoodScreen: (context) => AllfoodScreen(),
-    iphone11ProMaxFourScreen: (context) => Iphone11ProMaxFourScreen(),
-    myRewardsScreen: (context) => MyRewardsScreen(),
-    appNavigationScreen: (context) => AppNavigationScreen()
-  };
+  static const String initialRoute = '/initialRoute';
+
+  static Map<String, WidgetBuilder> get routes => {
+        splashScreen: SplashScreen.builder,
+        loginScreen: LoginScreen.builder,
+        historyScreen: HistoryScreen.builder,
+        ordersScreen: OrdersScreen.builder,
+        searchScreen: SearchScreen.builder,
+        paymentScreen: PaymentScreen.builder,
+        food1Screen: Food1Screen.builder,
+        mapsScreen: MapsScreen.builder,
+        profileScreen: ProfileScreen.builder,
+        appNavigationScreen: AppNavigationScreen.builder,
+        initialRoute: SplashScreen.builder
+      };
 }

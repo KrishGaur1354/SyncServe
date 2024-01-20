@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 class AppDecoration {
   // Fill decorations
   static BoxDecoration get fillGray => BoxDecoration(
-        color: appTheme.gray10004,
+        color: appTheme.gray10002,
       );
   static BoxDecoration get fillGray100 => BoxDecoration(
         color: appTheme.gray100,
@@ -19,34 +19,15 @@ class AppDecoration {
         color: appTheme.gray50,
       );
   static BoxDecoration get fillOnPrimary => BoxDecoration(
-        color: theme.colorScheme.onPrimary.withOpacity(1),
-      );
-  static BoxDecoration get fillOnPrimary1 => BoxDecoration(
-        color: theme.colorScheme.onPrimary.withOpacity(0.04),
-      );
-  static BoxDecoration get fillOnPrimary2 => BoxDecoration(
         color: theme.colorScheme.onPrimary,
       );
   static BoxDecoration get fillPrimary => BoxDecoration(
         color: theme.colorScheme.primary,
       );
 
-  // Gradient decorations
-  static BoxDecoration get gradientGrayToGray => BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0, 0.5),
-          end: Alignment(1, 0.5),
-          colors: [
-            appTheme.gray5001,
-            appTheme.gray10002,
-            appTheme.gray5001,
-          ],
-        ),
-      );
-
   // Outline decorations
   static BoxDecoration get outlineBlack => BoxDecoration(
-        color: theme.colorScheme.onPrimary.withOpacity(1),
+        color: theme.colorScheme.onPrimary,
         boxShadow: [
           BoxShadow(
             color: appTheme.black900.withOpacity(0.06),
@@ -59,22 +40,29 @@ class AppDecoration {
           ),
         ],
       );
-  static BoxDecoration get outlineBlueGrayA => BoxDecoration(
-        color: theme.colorScheme.onPrimary.withOpacity(1),
+  static BoxDecoration get outlineBlack900 => BoxDecoration();
+  static BoxDecoration get outlineBlack9001 => BoxDecoration(
+        color: theme.colorScheme.onPrimary,
         boxShadow: [
           BoxShadow(
-            color: appTheme.blueGray9000a,
+            color: appTheme.black900.withOpacity(0.03),
             spreadRadius: 2.h,
             blurRadius: 2.h,
             offset: Offset(
               0,
-              4,
+              10,
             ),
           ),
         ],
       );
+  static BoxDecoration get outlineDeepOrangeA => BoxDecoration(
+        border: Border.all(
+          color: appTheme.deepOrangeA400,
+          width: 1.h,
+        ),
+      );
   static BoxDecoration get outlineGray => BoxDecoration(
-        color: theme.colorScheme.onPrimary.withOpacity(1),
+        color: theme.colorScheme.onPrimary,
         boxShadow: [
           BoxShadow(
             color: appTheme.gray80019,
@@ -94,19 +82,19 @@ class BorderRadiusStyle {
   static BorderRadius get circleBorder64 => BorderRadius.circular(
         64.h,
       );
-  static BorderRadius get circleBorder79 => BorderRadius.circular(
-        79.h,
-      );
-  static BorderRadius get circleBorder99 => BorderRadius.circular(
-        99.h,
-      );
 
   // Rounded borders
-  static BorderRadius get roundedBorder16 => BorderRadius.circular(
-        16.h,
+  static BorderRadius get roundedBorder10 => BorderRadius.circular(
+        10.h,
+      );
+  static BorderRadius get roundedBorder20 => BorderRadius.circular(
+        20.h,
       );
   static BorderRadius get roundedBorder30 => BorderRadius.circular(
         30.h,
+      );
+  static BorderRadius get roundedBorder7 => BorderRadius.circular(
+        7.h,
       );
 }
 

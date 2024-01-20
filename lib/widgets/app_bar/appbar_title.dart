@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve_v1/core/app_export.dart';
 
 // ignore: must_be_immutable
 class AppbarTitle extends StatelessWidget {
@@ -28,7 +28,7 @@ class AppbarTitle extends StatelessWidget {
         padding: margin ?? EdgeInsets.zero,
         child: Text(
           text,
-          style: CustomTextStyles.bodyLargeInter.copyWith(
+          style: theme.textTheme.titleMedium!.copyWith(
             color: appTheme.black900,
           ),
         ),

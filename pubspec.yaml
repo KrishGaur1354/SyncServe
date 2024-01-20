@@ -1,4 +1,4 @@
-name: syncserve
+name: syncserve_v1
 description: A new Flutter project.
 version: 1.0.0+1
 environment: 
@@ -6,11 +6,16 @@ environment:
 dependencies: 
   flutter: 
     sdk: flutter
+  flutter_localizations: 
+    sdk: flutter
+  flutter_bloc: ^8.1.3
+  connectivity_plus: ^5.0.2
+  shared_preferences: ^2.2.2
   cached_network_image: ^3.3.0
   flutter_svg: ^2.0.9
-  carousel_slider: ^4.2.1
+  equatable: ^2.0.5
   smooth_page_indicator: ^1.1.0
-  intl: ^0.18.0
+  carousel_slider: ^4.2.1
 dev_dependencies: 
   flutter_test: 
     sdk: flutter
@@ -30,17 +35,7 @@ flutter:
           weight: 700
         - asset: assets/fonts/InriaSansRegular.ttf
           weight: 400
-    - family: Inter
+    - family: Montserrat
       fonts: 
-        - asset: assets/fonts/InterRegular.ttf
-          weight: 400
-    - family: Mulish
-      fonts: 
-        - asset: assets/fonts/MulishSemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/MulishRegular.ttf
-          weight: 400
-        - asset: assets/fonts/MulishRomanSemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/MulishMedium.ttf
-          weight: 500
+        - asset: assets/fonts/MontserratLight.ttf
+          weight: 300
