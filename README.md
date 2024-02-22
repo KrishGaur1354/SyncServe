@@ -1,5 +1,51 @@
+# SyncServe - Food Waste Reduction Mobile Application
 
-# syncserve
+## Overview
+SyncServe is a mobile application designed to address the issue of food waste and hunger in India, starting with Delhi. The application facilitates the sale of surplus food from restaurants at discounted rates, making meals more accessible while reducing waste. SyncServe aligns with the United Nations Sustainable Development Goals (SDGs), particularly SDG 12 - Responsible Consumption and Production, by promoting sustainable food practices.
+
+### Problem Statement
+India faces a paradox of abundant food waste and widespread hunger. SyncServe aims to bridge this gap by creating a platform where surplus food can be efficiently distributed to those in need.
+
+### Key Features
+- **Surplus Food Sale**: Restaurants can list leftover food items for sale at discounted prices.
+- **Affordable Meals**: Users can purchase quality meals at lower costs, reducing food wastage and addressing hunger.
+- **SDG Alignment**: SyncServe contributes to SDG 12 by promoting responsible consumption and production patterns.
+
+## Project Details
+
+### GitHub Repository
+[SyncServe GitHub Repository](https://github.com/KrishGaur1354/SyncServe)
+
+### Prototype Video
+[SyncServe Prototype Video](https://youtu.be/krq6WicS5MQ?si=HEwA6G7HG-Oxsn6V)
+
+### Problem Description
+SyncServe tackles the imbalance between food waste and hunger prevalent in India. The project aims to create a sustainable solution by connecting surplus food with individuals in need.
+
+### Project Impact
+- **Addressing the Problem**: SyncServe targets the alarming rate of food waste in Delhi while addressing the issue of hunger.
+- **Goals**: The project aims to create a symbiotic relationship between surplus food and hunger, reducing waste and making meals more accessible.
+- **Quantifiable Data**: Statistical evidence depicting food wastage informs the project's approach.
+
+### SDGs and Targets
+- **Selected Goal**: SDG 12 - Responsible Consumption and Production
+- **Rationale**: Addressing food waste is critical to achieving sustainable consumption and production patterns.
+
+### Technologies Used
+- **Google Technologies**: Flutter, Firebase, Android Studio
+- **AI/ML Implementation**: Gemini API for AI-powered chatbot integration
+- **Other Technologies**: Kotlin, Dart
+
+### Challenges Faced
+- **Cross-OS Compatibility**: Addressing discrepancies between iOS and Android platforms.
+- **Screen Size Scaling**: Ensuring optimal user experience across various devices.
+- **Lack of Pioneers**: Navigating uncharted territory in the Indian market.
+
+### Future Steps
+- **Scaling Strategy**: Expand partnerships with more restaurants and extend services to other cities.
+- **Feature Expansion**: Implement personalized recommendations, real-time tracking, and AI-driven analytics.
+- **User Experience Enhancement**: Introduce multilingual support and refined UI for better usability.
+
 ### Table of contents
 - [System requirements](#system-requirements)
 - [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
@@ -14,15 +60,6 @@
 
 Dart SDK Version 2.18.0 or greater.
 Flutter SDK Version 3.3.0 or greater.
-
-### Figma design guidelines for better UI accuracy
-
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
-
-### Check the UI of the entire app
-
-Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
 
 ### Application structure
 
@@ -51,29 +88,11 @@ After successful build, your application structure should look like this:
     └── theme                       - It contains app theme and decoration classes
     └── widgets                     - It contains all custom widget classes
 ```
+### Disclaimer
+By submitting SyncServe, the team confirms:
+- Willingness to travel at own expense if shortlisted.
+- Originality of the project and informed team members about the submission.
+- Consent for Google to share the project with third-party vendors for eligibility assessment.
 
-### How to format your code?
-
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
-
-### How you can improve code readability?
-
-Resolve the errors and warnings that are shown in the application.
-
-### Libraries and tools used
-
-- get - State management
-  https://pub.dev/packages/get
-- connectivity_plus - For status of network connectivity
-  https://pub.dev/packages/connectivity_plus
-- shared_preferences - Provide persistent storage for simple data
-  https://pub.dev/packages/shared_preferences
-- cached_network_image - For storing internet image into cache
-  https://pub.dev/packages/cached_network_image
-
-### Support
-
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+## Conclusion
+SyncServe presents a promising solution to the pressing issue of food waste and hunger in India. With its innovative approach and alignment with SDGs, SyncServe strives to make a meaningful impact on society while promoting responsible consumption and production patterns.
