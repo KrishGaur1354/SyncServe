@@ -1,114 +1,111 @@
-import 'bloc/app_navigation_bloc.dart';
-import 'models/app_navigation_model.dart';
 import 'package:flutter/material.dart';
-import 'package:syncserve_v1/core/app_export.dart';
+import 'package:syncserve/core/app_export.dart';
+import 'controller/app_navigation_controller.dart';
 
-class AppNavigationScreen extends StatelessWidget {
+// ignore_for_file: must_be_immutable
+class AppNavigationScreen extends GetWidget<AppNavigationController> {
   const AppNavigationScreen({Key? key})
       : super(
           key: key,
         );
 
-  static Widget builder(BuildContext context) {
-    return BlocProvider<AppNavigationBloc>(
-      create: (context) => AppNavigationBloc(AppNavigationState(
-        appNavigationModelObj: AppNavigationModel(),
-      ))
-        ..add(AppNavigationInitialEvent()),
-      child: AppNavigationScreen(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppNavigationBloc, AppNavigationState>(
-      builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: Color(0XFFFFFFFF),
-            body: SizedBox(
-              width: 375.h,
-              child: Column(
-                children: [
-                  _buildAppNavigation(context),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0XFFFFFFFF),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Color(0XFFFFFFFF),
+        body: SizedBox(
+          width: 375.h,
+          child: Column(
+            children: [
+              _buildAppNavigation(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0XFFFFFFFF),
+                    ),
+                    child: Column(
+                      children: [
+                        _buildScreenTitle(
+                          screenTitle: "Splash".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.splashScreen),
                         ),
-                        child: Column(
-                          children: [
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Splash".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.splashScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Login".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.loginScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "History".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.historyScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Orders".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.ordersScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Search".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.searchScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Payment".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.paymentScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Food1".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.food1Screen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Maps".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.mapsScreen),
-                            ),
-                            _buildScreenTitle(
-                              context,
-                              screenTitle: "Profile".tr,
-                              onTapScreenTitle: () =>
-                                  onTapScreenTitle(AppRoutes.profileScreen),
-                            ),
-                          ],
+                        _buildScreenTitle(
+                          screenTitle: "Login".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.loginScreen),
                         ),
-                      ),
+                        _buildScreenTitle(
+                          screenTitle: "History".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.historyScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "Orders".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.ordersScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "Search".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.searchScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "EditProfile".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.editprofileScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "FoodMain".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.foodmainScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "Set Location".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.setLocationScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "Three".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.threeScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "Confirmed".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.confirmedScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "My Rewards".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.myRewardsScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "HomePage - Tab Container".tr,
+                          onTapScreenTitle: () => onTapScreenTitle(
+                              AppRoutes.homepageTabContainerScreen),
+                        ),
+                        _buildScreenTitle(
+                          screenTitle: "ProfileFAQ".tr,
+                          onTapScreenTitle: () =>
+                              onTapScreenTitle(AppRoutes.profilefaqScreen),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
   /// Section Widget
-  Widget _buildAppNavigation(BuildContext context) {
+  Widget _buildAppNavigation() {
     return Container(
       decoration: BoxDecoration(
         color: Color(0XFFFFFFFF),
@@ -162,8 +159,7 @@ class AppNavigationScreen extends StatelessWidget {
   }
 
   /// Common widget
-  Widget _buildScreenTitle(
-    BuildContext context, {
+  Widget _buildScreenTitle({
     required String screenTitle,
     Function? onTapScreenTitle,
   }) {
@@ -209,6 +205,6 @@ class AppNavigationScreen extends StatelessWidget {
 
   /// Common click event
   void onTapScreenTitle(String routeName) {
-    NavigatorService.pushNamed(routeName);
+    Get.toNamed(routeName);
   }
 }

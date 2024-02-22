@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve_v1/core/app_export.dart';
+import '../core/app_export.dart';
 
 class CustomSearchView extends StatelessWidget {
   CustomSearchView({
@@ -76,20 +76,20 @@ class CustomSearchView extends StatelessWidget {
     return alignment != null
         ? Align(
             alignment: alignment ?? Alignment.center,
-            child: searchViewWidget(context),
+            child: searchViewWidget,
           )
-        : searchViewWidget(context);
+        : searchViewWidget;
   }
 
-  Widget searchViewWidget(BuildContext context) => SizedBox(
+  Widget get searchViewWidget => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(
-          scrollPadding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(Get.context!).viewInsets.bottom),
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? CustomTextStyles.titleMediumBlack900,
+          style: textStyle ?? CustomTextStyles.titleMediumBlack900_1,
           keyboardType: textInputType,
           maxLines: maxLines ?? 1,
           decoration: decoration,
@@ -101,7 +101,7 @@ class CustomSearchView extends StatelessWidget {
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? CustomTextStyles.titleMediumBlack900,
+        hintStyle: hintStyle ?? CustomTextStyles.titleMediumBlack900_1,
         prefixIcon: prefix ??
             Container(
               margin: EdgeInsets.fromLTRB(12.h, 21.v, 14.h, 21.v),
@@ -156,5 +156,13 @@ class CustomSearchView extends StatelessWidget {
               borderRadius: BorderRadius.circular(30.h),
               borderSide: BorderSide.none,
             ),
+      );
+}
+
+/// Extension on [CustomSearchView] to facilitate inclusion of all types of border style etc
+extension SearchViewStyleHelper on CustomSearchView {
+  static OutlineInputBorder get fillGray => OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30.h),
+        borderSide: BorderSide.none,
       );
 }

@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:syncserve_v1/main.dart';
-
 class ServerException implements Exception {}
 
 class CacheException implements Exception {}
@@ -12,10 +9,6 @@ class NoInternetException implements Exception {
   late String _message;
 
   NoInternetException([String message = 'NoInternetException Occurred']) {
-    if (globalMessengerKey.currentState != null) {
-      globalMessengerKey.currentState!
-          .showSnackBar(SnackBar(content: Text(message)));
-    }
     this._message = message;
   }
 

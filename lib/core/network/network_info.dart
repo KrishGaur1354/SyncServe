@@ -12,13 +12,7 @@ abstract class NetworkInfoI {
 class NetworkInfo implements NetworkInfoI {
   Connectivity connectivity;
 
-  static final NetworkInfo _networkInfo = NetworkInfo._internal(Connectivity());
-
-  factory NetworkInfo() {
-    return _networkInfo;
-  }
-
-  NetworkInfo._internal(this.connectivity) {
+  NetworkInfo(this.connectivity) {
     connectivity = this.connectivity;
   }
 

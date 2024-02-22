@@ -1,28 +1,19 @@
-import '../search_screen/widgets/stackgrid_item_widget.dart';
-import 'bloc/search_bloc.dart';
-import 'models/search_model.dart';
-import 'models/stackgrid_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:syncserve_v1/core/app_export.dart';
-import 'package:syncserve_v1/widgets/custom_search_view.dart';
+import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve/widgets/custom_search_view.dart';
+import 'controller/search_controller.dart';
+import 'models/menucard_item_model.dart';
+import 'widgets/menucard_item_widget.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends GetWidget<SearchController> {
   const SearchScreen({Key? key}) : super(key: key);
-
-  static Widget builder(BuildContext context) {
-    return BlocProvider<SearchBloc>(
-        create: (context) =>
-            SearchBloc(SearchState(searchModelObj: SearchModel()))
-              ..add(SearchInitialEvent()),
-        child: SearchScreen());
-  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            backgroundColor: appTheme.gray200,
             resizeToAvoidBottomInset: false,
+            backgroundColor: appTheme.gray200,
             body: SizedBox(
                 width: double.maxFinite,
                 child: Column(children: [
@@ -30,7 +21,7 @@ class SearchScreen extends StatelessWidget {
                   Expanded(
                       child: SingleChildScrollView(
                           child: Column(children: [
-                    _buildArrowLeftSearchView(context),
+                    _buildArrowLeftSearchView(),
                     SizedBox(height: 47.v),
                     Container(
                         padding: EdgeInsets.symmetric(
@@ -47,7 +38,7 @@ class SearchScreen extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                   style: theme.textTheme.headlineLarge)),
                           SizedBox(height: 43.v),
-                          _buildStackGrid(context),
+                          _buildMenuCard(),
                           SizedBox(height: 43.v)
                         ]))
                   ])))
@@ -55,68 +46,59 @@ class SearchScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildArrowLeftSearchView(BuildContext context) {
+  Widget _buildArrowLeftSearchView() {
     return Align(
         alignment: Alignment.centerRight,
         child: Padding(
             padding: EdgeInsets.only(left: 42.h, right: 19.h),
             child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
               CustomImageView(
-                  imagePath: ImageConstant.imgArrowLeft,
+                  imagePath: ImageConstant.imgArrowLeftBlack900,
                   height: 24.adaptSize,
                   width: 24.adaptSize,
                   margin: EdgeInsets.symmetric(vertical: 18.v),
                   onTap: () {
-                    onTapImgArrowLeft(context);
+                    onTapImgArrowLeft();
                   }),
               Expanded(
                   child: Padding(
                       padding: EdgeInsets.only(left: 15.h),
-                      child: BlocSelector<SearchBloc, SearchState,
-                              TextEditingController?>(
-                          selector: (state) => state.searchController,
-                          builder: (context, searchController) {
-                            return CustomSearchView(
-                                controller: searchController,
-                                hintText: "lbl_search".tr);
-                          })))
+                      child: CustomSearchView(
+                          controller: controller.searchController,
+                          hintText: "lbl_search".tr)))
             ])));
   }
 
   /// Section Widget
-  Widget _buildStackGrid(BuildContext context) {
+  Widget _buildMenuCard() {
     return Padding(
         padding: EdgeInsets.only(left: 1.h),
-        child: BlocSelector<SearchBloc, SearchState, SearchModel?>(
-            selector: (state) => state.searchModelObj,
-            builder: (context, searchModelObj) {
-              return GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisExtent: 253.v,
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 1.h,
-                      crossAxisSpacing: 1.h),
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: searchModelObj?.stackgridItemList.length ?? 0,
-                  itemBuilder: (context, index) {
-                    StackgridItemModel model =
-                        searchModelObj?.stackgridItemList[index] ??
-                            StackgridItemModel();
-                    return StackgridItemWidget(model, payt: () {
-                      payt(context);
-                    });
-                  });
-            }));
+        child: Obx(() => GridView.builder(
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 253.v,
+                crossAxisCount: 1,
+                mainAxisSpacing: 1.h,
+                crossAxisSpacing: 1.h),
+            physics: NeverScrollableScrollPhysics(),
+            itemCount:
+                controller.searchModelObj.value.menucardItemList.value.length,
+            itemBuilder: (context, index) {
+              MenucardItemModel model =
+                  controller.searchModelObj.value.menucardItemList.value[index];
+              return MenucardItemWidget(model, navigatetofood: () {
+                navigatetofood();
+              });
+            })));
   }
 
-  /// Navigates to the food1Screen when the action is triggered.
-  payt(BuildContext context) {
-    NavigatorService.pushNamed(AppRoutes.food1Screen);
+  /// Navigates to the foodmainScreen when the action is triggered.
+  navigatetofood() {
+    Get.toNamed(AppRoutes.foodmainScreen);
   }
 
   /// Navigates to the previous screen.
-  onTapImgArrowLeft(BuildContext context) {
-    NavigatorService.goBack();
+  onTapImgArrowLeft() {
+    Get.back();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve_v1/core/app_export.dart';
-import 'package:syncserve_v1/widgets/custom_icon_button.dart';
+import 'package:syncserve/core/app_export.dart';
+import 'package:syncserve/widgets/custom_icon_button.dart';
 
 // ignore: must_be_immutable
 class AppbarTrailingIconbutton extends StatelessWidget {
@@ -31,7 +31,7 @@ class AppbarTrailingIconbutton extends StatelessWidget {
           height: 73.adaptSize,
           width: 73.adaptSize,
           child: CustomImageView(
-            imagePath: ImageConstant.imgGroup2,
+            imagePath: ImageConstant.imgGroup3,
           ),
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncserve_v1/core/app_export.dart';
+import '../core/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField({
@@ -79,20 +79,20 @@ class CustomTextFormField extends StatelessWidget {
     return alignment != null
         ? Align(
             alignment: alignment ?? Alignment.center,
-            child: textFormFieldWidget(context),
+            child: textFormFieldWidget,
           )
-        : textFormFieldWidget(context);
+        : textFormFieldWidget;
   }
 
-  Widget textFormFieldWidget(BuildContext context) => SizedBox(
+  Widget get textFormFieldWidget => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(
-          scrollPadding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(Get.context!).viewInsets.bottom),
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? theme.textTheme.bodyLarge,
+          style: textStyle ?? CustomTextStyles.bodySmallBluegray90001,
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -103,7 +103,7 @@ class CustomTextFormField extends StatelessWidget {
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? theme.textTheme.bodyLarge,
+        hintStyle: hintStyle ?? CustomTextStyles.bodyMediumMontserratBlack900,
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,
@@ -118,15 +118,19 @@ class CustomTextFormField extends StatelessWidget {
         fillColor: fillColor,
         filled: filled,
         border: borderDecoration ??
-            UnderlineInputBorder(
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4.h),
               borderSide: BorderSide(
-                color: appTheme.black900,
+                color: theme.colorScheme.primary,
+                width: 1,
               ),
             ),
         enabledBorder: borderDecoration ??
-            UnderlineInputBorder(
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4.h),
               borderSide: BorderSide(
-                color: appTheme.black900,
+                color: theme.colorScheme.primary,
+                width: 1,
               ),
             ),
         focusedBorder: borderDecoration ??
@@ -142,7 +146,12 @@ class CustomTextFormField extends StatelessWidget {
 
 /// Extension on [CustomTextFormField] to facilitate inclusion of all types of border style etc
 extension TextFormFieldStyleHelper on CustomTextFormField {
-  static UnderlineInputBorder get underLineBlack1 => UnderlineInputBorder(
+  static UnderlineInputBorder get underLineGray => UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: appTheme.gray20001,
+        ),
+      );
+  static UnderlineInputBorder get underLineBlack => UnderlineInputBorder(
         borderSide: BorderSide(
           color: appTheme.black900.withOpacity(0.53),
         ),

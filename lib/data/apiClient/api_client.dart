@@ -1,3 +1,3 @@
-import 'package:syncserve_v1/core/app_export.dart';
+import 'package:syncserve/core/app_export.dart';
 
-class ApiClient {}
+class ApiClient extends GetConnect {}
